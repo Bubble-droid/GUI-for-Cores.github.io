@@ -62,7 +62,6 @@ Terminal=false
 Type=Application
 Categories=Application;GUI.for.Clash;
 StartupNotify=true
-
 ```
 
 ## 5、目录详解
