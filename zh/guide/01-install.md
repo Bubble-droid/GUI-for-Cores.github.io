@@ -55,6 +55,7 @@
 Version=1.0
 Name=GUI.for.Clash
 Comment=GUI.for.Clash
+StartupWMClass=GUI.for.Clash
 Exec=/path/to/GUI.for.Clash/GUI.for.Clash
 Icon=/path/to/GUI.for.Clash/appicon.png
 Terminal=false
