@@ -20,9 +20,9 @@
 
 - `手动触发`：点击运行按钮时会被触发，GUI 会执行源码中的 `onRun` 方法。
 
-- `更新订阅时`：更新订阅时会被触发，GUI 会执行源码中的 `onSubscribe` 方法，并传递一个参数，其值是节点列表数组。此方法需要返回一个节点列表的数组。
+- `更新订阅时`：更新订阅时会被触发，GUI 会执行源码中的 `onSubscribe` 方法，并传递 2 个参数，分别是节点列表数组、订阅元数据。此方法需要返回一个节点列表的数组。
 
-- `生成配置时`：生成配置文件时会被触发，GUI 会执行源码中的 `onGenerate` 方法，并传递一个参数，其值是一个对象，里面包含了 core 的配置，此方法需要将处理后的参数返回，或原样返回。
+- `生成配置时`：生成配置文件时会被触发，GUI 会执行源码中的 `onGenerate` 方法，并传递 2 个参数，分别是 core 的配置、配置元数据，此方法需要将处理后的参数返回，或原样返回。
 
 - `启动 APP 时`：启动 APP 时会被触发，GUI 会执行源码中的 `onStartup` 方法，没有传递参数，此方法无需返回任何值。
 
@@ -215,6 +215,137 @@ const onShutdown = () => {
 ## 插件能力：Plugins
 
 在上面我们演示了 Plugins.message、Plugins.HttpGet，那么插件对象 Plugins 还有哪些能力呢，你可以在软件界面按下 Ctrl+Shift+F12 打开开发者面板，切换到控制台，输入 Plugins 并回车查看，具体的使用示例可以看源码。
+
+## 高级 API
+
+### 1、添加自定义 UI
+
+现在，你可以使用 `addCustomActions` 方法在 GUI 中添加自定义操作。
+
+方法签名：
+
+```ts
+interface CustomActionApi {
+  h: typeof h;
+  ref: typeof ref;
+}
+type CustomActionProps = Recordable;
+type CustomActionSlots = Recordable<
+  | ((api: CustomActionApi) => VNode | string | number | boolean)
+  | VNode
+  | string
+  | number
+  | boolean
+>;
+interface CustomAction<P = CustomActionProps, S = CustomActionSlots> {
+  id?: string;
+  component: string;
+  componentProps?: P | ((api: CustomActionApi) => P);
+  componentSlots?: S | ((api: CustomActionApi) => S);
+}
+type CustomActionFn = ((api: CustomActionApi) => CustomAction) & {
+  id?: string;
+};
+
+function addCustomActions(
+  target: string,
+  actions: CustomAction | CustomAction[] | CustomActionFn | CustomActionFn[]
+): () => void;
+```
+
+参数说明：
+
+- target: 目标位置，目前可选值为`core_state`，表示添加的概览页的`核心状态`面板中
+
+- actions: 组件列表，通过对象配置或方法返回对象配置
+
+使用示例
+
+```js
+const appStore = Plugins.useAppStore();
+
+// 添加单个组件：按钮
+appStore.addCustomActions("core_state", {
+  component: "Button",
+  componentProps: {
+    type: "link",
+    size: "small",
+  },
+  componentSlots: {
+    default: "一个按钮",
+  },
+});
+
+// 添加多个组件：开关、计数器
+appStore.addCustomActions("core_state", [
+  {
+    component: "Switch",
+    componentProps: ({ ref }) => {
+      const checked = ref(false);
+      return {
+        modelValue: checked.value,
+        onChange: (val) => {
+          checked.value = val;
+          console.log(val, checked.value);
+        },
+      };
+    },
+    componentSlots: {
+      default: "一个开关",
+    },
+  },
+  ({ h, ref }) => {
+    const count = ref(0);
+    return {
+      component: "Button",
+      componentProps: {
+        type: "link",
+        size: "small",
+        onClick: () => (count.value += 1),
+      },
+      componentSlots: {
+        default: () => "+" + count.value,
+      },
+    };
+  },
+]);
+```
+
+注：`componentProps`、`componentSlots`以及`actions`数组项可以是对象也可以是方法，方法时需返回`CustomAction`结构的对象。
+
+- 可用的 component 取值：所有 HTML 元素、[组件库](https://github.com/GUI-for-Cores/GUI.for.SingBox/tree/main/frontend/src/components)下的组件。
+
+- 可用的 componentProps 取值：所有的 HTML 属性、[组件库](https://github.com/GUI-for-Cores/GUI.for.SingBox/tree/main/frontend/src/components)中组件支持的属性(Props)
+
+- 可用的 componentSlots 取值：default、[组件库](https://github.com/GUI-for-Cores/GUI.for.SingBox/tree/main/frontend/src/components)中组件支持的插槽(Slots)
+
+- 可用的 CustomActionApi 取值：ref(Vue 中定义响应式变量的 API)、h(Vue 中定义 Vnode 的 API)
+
+### 2、移除自定义 UI
+
+方法签名：
+
+```ts
+function removeCustomActions(target: string, id: string | string[]): void;
+```
+
+使用示例
+
+```js
+const appStore = Plugins.useAppStore();
+
+const remove = appStore.addCustomActions('core_state', {
+  id: 'first-action'
+  component: 'xxx',
+  // ...
+})
+
+// 方式1：通过添加时指定的id删除
+appStore.removeCustomActions("core_state", 'first-action');
+
+// 方法2：通过添加时返回的删除方法删除
+remove()
+```
 
 ## 更多的示例
 
