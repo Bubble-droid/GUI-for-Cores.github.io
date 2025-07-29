@@ -6,6 +6,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import GUIforClash from "/components/GUIforClash.vue";
+import GUIforSingBox from "/components/GUIforSingBox.vue";
+
 const modules = [Navigation, Pagination];
 </script>
 
@@ -20,10 +23,10 @@ const modules = [Navigation, Pagination];
           navigation
         >
           <SwiperSlide class="swiper-slide">
-            <iframe src="/apps/gfc/"></iframe>
+            <GUIforClash />
           </SwiperSlide>
           <SwiperSlide class="swiper-slide">
-            <iframe src="/apps/gfs/"></iframe>
+            <GUIforSingBox />
           </SwiperSlide>
         </Swiper>
       </div>
@@ -40,14 +43,6 @@ const modules = [Navigation, Pagination];
     justify-content: center;
     align-items: center;
     padding: 40px;
-  }
-  iframe {
-    width: 800px;
-    height: 540px;
-    border: none;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
   }
 }
 
