@@ -44,7 +44,7 @@ window.go = {
           basePath: window.location.pathname.slice(0, -1),
         };
       },
-      Readdir() {
+      ReadDir() {
         return { flag: true, data: "" };
       },
       IsStartup() {
@@ -110,16 +110,16 @@ window.go = {
           body: respBody,
         };
       },
-      Writefile(path, content) {
+      WriteFile(path, content) {
         path = window.location.pathname + path;
         localStorage.setItem(path, content);
         return { flag: true };
       },
-      Readfile(path) {
+      ReadFile(path) {
         path = window.location.pathname + path;
         return { flag: true, data: localStorage.getItem(path) };
       },
-      Removefile() {},
+      RemoveFile() {},
       Exec(path, args) {
         if (path == "bash") {
           return { flag: true, data: "" };
