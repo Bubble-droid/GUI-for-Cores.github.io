@@ -73,6 +73,7 @@ GUI.for.Clash
 └─ data                      // 程序资源目录
 |   ├─ .cache                // 缓存文件夹，临时文件应该放在此目录
 |   ├─ mihomo                // 内核程序目录
+|   ├─ locales               // 多语言文件目录
 |   ├─ plugins               // 插件目录，仅存放插件源码，一个插件对应一个plugin-xxx.js文件
 |   ├─ rolling-release       // 滚动发行资源存放目录，存放前端编译后的文件
 |   ├─ rulesets              // 规则集目录，供内核程序引用

@@ -16,7 +16,7 @@
 
 ## 计划任务运行原理
 
-计划任务系统使用的依赖：https://github.com/robfig/cron/tree/v3
+计划任务系统使用的依赖：https://www.npmjs.com/package/croner
 
 - 计划任务使用 cron 表达式；
 

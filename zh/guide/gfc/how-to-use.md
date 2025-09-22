@@ -4,7 +4,7 @@
 
 转至 `设置` - `内核` 页面，程序会检测本地是否有内核文件，如果没有只需要点击`更新`按钮即可下载到本地，通常这一步需要科学上网环境。
 
-如果下载失败，你也可以使用已有的内核文件，将他重命名为`mihomo-${os}-${arch}.exe`或`mihomo-${os}-${arch}-alpha.exe`，并放置在程序的`data/mihomo`目录下，然后重启软件。
+如果下载失败，你也可以使用已有的内核文件，将他重命名为`mihomo.exe`或`mihomo-alpha.exe`，并放置在程序的`data/mihomo`目录下，然后重启软件。
 
 ![](/zh/resources/gfc/205_how_to_use.png)
 

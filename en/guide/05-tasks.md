@@ -16,7 +16,7 @@
 
 ## How the Scheduled Task Works
 
-Dependencies for the Scheduled Task System: https://github.com/robfig/cron/tree/v3
+Dependencies for the Scheduled Task System: https://www.npmjs.com/package/croner
 
 - Scheduled tasks use cron expression
 

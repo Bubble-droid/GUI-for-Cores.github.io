@@ -536,7 +536,8 @@ const component = defineComponent({
 方法签名:
 
 ```ts
-interface Options {
+type UseModalOptions = Partial<{
+  open: boolean;
   title?: string;
   footer?: boolean;
   maxHeight?: string;
@@ -554,27 +555,53 @@ interface Options {
   onCancel?: () => MaybePromise<boolean | void>;
   beforeClose?: (isOk: boolean) => MaybePromise<boolean | void>;
   afterClose?: (isOk: boolean) => void;
+}>;
+
+interface UseModalSlots {
+  title?: () => any;
+  toolbar?: () => any;
+  action?: () => any;
+  cancel?: () => any;
+  submit?: () => any;
+  default?: () => any;
 }
 
-function modal(options: Options): {
+function modal(
+  options?: UseModalOptions,
+  slots?: UseModalSlots
+): {
+  destroy: () => void;
+} & {
   open: () => void;
   close: () => void;
-  setProps: (options: Options) => void;
-  setComponent: (vnode: VNode) => void;
-  destroy: () => void;
+  setProps: (options: UseModalOptions) => void;
+  patchProps: (options: Partial<UseModalOptions>) => void;
+  setSlots: (slots: UseModalSlots) => void;
+  patchSlots: (slots: UseModalSlots) => void;
+  setComponent: (component: any) => void;
+  setContent<C = any>(
+    Comp: C,
+    _props?: InstanceType<C>["$props"],
+    _slots?: InstanceType<C>["$slots"],
+    replace = true
+  );
 };
 ```
 
 使用示例：
 
 ```ts
-const modal = Plugins.modal({
-  title: "自定义UI使用示例",
-  component: h(component),
-  afterClose: () => {
-    modal.destroy();
+const modal = Plugins.modal(
+  {
+    title: "自定义UI使用示例",
+    afterClose: () => {
+      modal.destroy();
+    },
   },
-});
+  {
+    default: () => h(component),
+  }
+);
 ```
 
 最后打开模态框：
@@ -610,9 +637,9 @@ envStore.switchSystemProxy()
 
 // 内核管理示例
 const kernelApiStore = Plugins.useKernelApiStore()
-kernelApiStore.startKernel()
-kernelApiStore.stopKernel()
-kernelApiStore.restartKernel()
+kernelApiStore.startCore()
+kernelApiStore.stopCore()
+kernelApiStore.restartCore()
 
 // 配置管理示例
 const profilesStore = Plugins.useProfilesStore()

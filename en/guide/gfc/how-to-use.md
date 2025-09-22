@@ -4,7 +4,7 @@
 
 Go to the `Settings` - `Kernel` page, the application checks if the core file is present. If the core file does not exist, click on the `Update` button to download the file. Usually the system's network needs to be proxied in this step
 
-If the download process fails, the user may download the core file manually, rename it to `mihomo-${os}-${arch}.exe` or `mihomo-${os}-${arch}-alpha.exe`, place it in the application's `data/mihomo` folder, and then restart the application
+If the download process fails, the user may download the core file manually, rename it to `mihomo.exe` or `mihomo-alpha.exe`, place it in the application's `data/mihomo` folder, and then restart the application
 
 ![](/zh/resources/gfc/205_how_to_use.png)
 

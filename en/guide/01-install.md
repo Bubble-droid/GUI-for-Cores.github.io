@@ -30,7 +30,6 @@ Notes:
 - Avoid using `spaces` in the path
 - Avoid using `Chinese characters` in the path
 
-
 ## 3. macOS
 
 Double click the zip file, move the `unzipped` file to `Desktop`, follow these steps:
@@ -74,6 +73,7 @@ GUI.for.Clash
 └─ data                      // Application resource directory
 |   ├─ .cache                // Cache folder, temporary files should be placed in this directory
 |   ├─ mihomo                // Core files directory
+|   ├─ locales               // Localization files for multiple languages
 |   ├─ plugins               // Plugin directory, only stores plugin source code, each plugin corresponds to a plugin-xxx.js file
 |   ├─ rolling-release       // Rolling release resource directory, stores compiled frontend files
 |   ├─ rulesets              // Ruleset directory, referenced by the core application
