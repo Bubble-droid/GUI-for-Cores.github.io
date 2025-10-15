@@ -187,8 +187,9 @@
           "sniff": "استشمام",
           "resolve": "حل DNS",
           "rejectMethod": "روش رد کردن",
-          "rejectDefault": "NXDOMAIN",
-          "rejectDrop": "حذف"
+          "rejectDefault": "default",
+          "rejectDrop": "drop",
+          "rejectReply": "reply"
         },
         "outbound": "برچسب خروجی",
         "routeOptions": "گزینه‌های مسیر",
@@ -451,6 +452,7 @@
     "mixinSettings": {
       "name": "میکس",
       "priority": "اولویت",
+      "format": "فرمت",
       "mixin": "میکس",
       "gui": "رابط کاربری"
     },
@@ -604,7 +606,8 @@
       "open": "باز کردن پوشه برنامه"
     },
     "lang": {
-      "name": "Language",
+      "name": "زبان",
+      "load": "بارگذاری فایل‌های زبان",
       "zh": "简体中文",
       "en": "English"
     },
@@ -628,7 +631,10 @@
     "exitOnClose": "خروج از برنامه هنگام بستن پنجره",
     "closeKernelOnExit": "بستن هسته هنگام خروج از برنامه",
     "autoSetSystemProxy": "تنظیم خودکار / پاک کردن پروکسی سیستم",
+    "proxyBypassList": "فهرست عبور از پروکسی",
+    "proxyBypassListTips": "با نقطه‌ویرگول جدا کنید",
     "autoStartKernel": "شروع خودکار هسته",
+    "realMemoryUsage": "نمایش میزان واقعی استفاده از حافظه هسته",
     "admin": "اجرا به عنوان ادمین",
     "addPluginToMenu": "افزودن افزونه به منوی سینی",
     "addGroupToMenu": "افزودن گروه پراکسی به منوی سینی",
@@ -660,6 +666,10 @@
         "env": "متغیرهای محیطی",
         "args": "آرگومان‌های زمان اجرا"
       }
+    },
+    "plugin": {
+      "resetSetting": "بازنشانی تنظیم",
+      "resetSettings": "بازنشانی همه تنظیمات"
     },
     "userAgent": {
       "name": "User-Agent",

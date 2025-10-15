@@ -187,8 +187,9 @@
           "sniff": "Подслушивать",
           "resolve": "Разрешить работу DNS",
           "rejectMethod": "Метод",
-          "rejectDefault": "NXDOMAIN",
-          "rejectDrop": "Сбросить"
+          "rejectDefault": "default",
+          "rejectDrop": "drop",
+          "rejectReply": "reply"
         },
         "outbound": "Тег исходящего подключения",
         "routeOptions": "Варианты маршрута",
@@ -256,7 +257,8 @@
         "servers": "Серверы",
         "rules": "Правила"
       },
-      "tag": {
+      "tag": "Тег",
+      "type": {
         "name": "Тег",
         "local": "Local",
         "hosts": "Hosts",
@@ -450,6 +452,7 @@
     "mixinSettings": {
       "name": "Микширование",
       "priority": "Приоритет",
+      "format": "Формат",
       "mixin": "Микширование",
       "gui": "Графический интерфейс пользователя"
     },
@@ -603,7 +606,8 @@
       "open": "Открыть папку приложения"
     },
     "lang": {
-      "name": "Language",
+      "name": "Язык",
+      "load": "Загрузить языковые файлы",
       "zh": "简体中文",
       "en": "English"
     },
@@ -627,7 +631,10 @@
     "exitOnClose": "Выйти из приложения при закрытии окна",
     "closeKernelOnExit": "Остановить ядро при закрытии приложения",
     "autoSetSystemProxy": "Автоматическая установка/очистка системного прокси",
+    "proxyBypassList": "Список обхода прокси",
+    "proxyBypassListTips": "Разделяйте точкой с запятой",
     "autoStartKernel": "Автоматический запуск ядра",
+    "realMemoryUsage": "Показать фактическое использование памяти ядра",
     "admin": "Запускать от имени администратора",
     "addPluginToMenu": "Добавить плагин в трей-меню",
     "addGroupToMenu": "Добавить группу прокси в трей-меню",
@@ -659,6 +666,10 @@
         "env": "Переменные среды",
         "args": "Аргументы выполнения"
       }
+    },
+    "plugin": {
+      "resetSetting": "Сбросить настройку",
+      "resetSettings": "Сбросить все настройки"
     },
     "userAgent": {
       "name": "Пользовательский User-Agent",
